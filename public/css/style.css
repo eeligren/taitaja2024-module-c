@@ -1,0 +1,93 @@
+.auth-container {
+    width: 350px;
+    border: 1px solid black;
+    padding: 1rem;
+    background-color: #718096;
+    margin: 0 auto;
+    margin-top: 200px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+h1 {
+    font-size: 40px;
+    font-weight: 600;
+}
+
+input, select {
+    padding: .6rem;
+    width: 100%;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+
+button {
+    width: 100%;
+    background-color: #3434c9;
+    color: white;
+    border-radius: 5px;
+    padding: .6rem;
+}
+
+h2 {
+    margin-top: 2rem;
+    font-size: 35px;
+    font-weight: 600;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    padding: 1rem 4rem;
+    background-color: #9ca3af;
+    justify-content: space-between;
+}
+
+.header .buttons {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.main {
+    padding: 4rem;
+}
+
+.list {
+    display: flex;
+    max-width: 600px;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.list-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+
+.list-row .left, .list-row .right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.form-container {
+    max-width: 500px;
+    margin-top: 2rem;
+    text-align: left;
+}
+
+.row {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: flex-start;
+}

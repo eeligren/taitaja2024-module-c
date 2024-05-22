@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matopeli</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js"></script>
+</head>
+<body>
+    <div class="game-container">
+        <!--Overlay (menus, screens, point sending...)-->
+        <div class="overlay">
+            <p class="points">Pisteet: <span id="points"></span></p>
+            <button id="start_btn">Aloita</button>
+            <div class="game-end">
+                <h1>Peli päättyi</h1>
+                <p>Haluatko tallentaa tuloksen?</p>
+                <div class="buttons-row">
+                    <button id="yes-btn">Kyllä</button>
+                    <button id="no-btn">Ei</button>
+                </div>
+            </div>
+            <div class="save-results">
+                <div id="success-msg">
+                    <p id="message-text">Tiedot tallennettu onnistuneesti!</p>
+                    <button id="play-again">Pelaa uudelleen?</button>
+                </div>
+                <div class="form">
+                    <input type="text" id="username" placeholder="Nimi">
+                    <button id="send">Lähetä</button>
+                </div>
+            </div>
+        </div>
+        <!--Canvas to play the game-->
+        <canvas id="game" width="600" height="400"></canvas>
+    </div>
+</body>
+</html>
