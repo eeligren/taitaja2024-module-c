@@ -18,7 +18,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/setpoints', function (Request $request) {
+Route::post('/sendpoints', function (Request $request) {
     \App\Models\Result::create([
         'username' => $request->input('username') ? $request->input('username') : 'unnamed',
         'score' => $request->input('score') ? $request->input('score') : 0,
