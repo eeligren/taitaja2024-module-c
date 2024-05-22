@@ -199,7 +199,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        //Other snake hit detection
+        //Other snake hit detection.
         if(snake1.length == 0 && snake2.length == 0) {
             if(snake1X == snake2X && snake1Y == snake2Y) {
                 isGameOver = true;
