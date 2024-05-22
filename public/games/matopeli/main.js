@@ -1,4 +1,7 @@
+const apiUrl = 'https://module-c.8625.sollertis.host/api/sendpoints';
+
 document.addEventListener('DOMContentLoaded', function() {
+    //Game canvas elements
     const canvas = document.querySelector('#game');
     const ctx = canvas.getContext('2d');
     const points = document.querySelector('#points');
@@ -17,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const playAgainBtn = document.querySelector('#play-again');
     const messageText = document.querySelector('#message-text');
 
+    //Event listeners
     sendBtn.addEventListener('click', sendPoints);
     yes_btn.addEventListener('click', savePoints)
     no_btn.addEventListener('click', function() {
@@ -25,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
         successMsg.style.display = 'flex';
         save_results_form.style.display = 'none';
         messageText.style.display = 'none';
-    })
+    });
     playAgainBtn.addEventListener('click', () => location.reload())
     
     //Game variables
@@ -33,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let rows = 18;
     let columns = 24; 
 
+    //Global score variable
     let score = 0;
 
     let snake1X = blockSize * 2;
@@ -52,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let foodY;
         
     let isGameOver = false;
-    //Game variables end
+    //Game variables end ---
 
     //When start button is pressed
     startBtn.addEventListener('click', function() {
@@ -71,8 +76,10 @@ document.addEventListener('DOMContentLoaded', function() {
     overlay.style.width = canvas.width + 'px';
     overlay.style.height = canvas.height + 'px';
 
+    //Watch keypresses
     document.addEventListener("keyup", directionChange);
 
+    //On load -> init game
     initGame();
 
     function initGame() {
@@ -228,7 +235,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         };
 
-        xhr.open('POST', 'http://127.0.0.1:8000/api/setpoints', true);
+        xhr.open('POST', apiUrl, true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(JSON.stringify({
             username: nameInput.value,
