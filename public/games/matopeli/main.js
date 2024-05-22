@@ -63,10 +63,10 @@ document.addEventListener('DOMContentLoaded', function() {
     startBtn.addEventListener('click', function() {
         startBtn.style.display = 'none';
         
-        speed1X = 0;
-        speed1Y = 1;
-        speed2X = 0;
-        speed2Y = 1;
+        speed1X = 1;
+        speed1Y = 0;
+        speed2X = -1;
+        speed2Y = 0;
     });
 
     //Init canvas size
@@ -143,7 +143,8 @@ document.addEventListener('DOMContentLoaded', function() {
         //Snake 1 draw
         snake1X += speed1X * blockSize;
         snake1Y += speed1Y * blockSize; 
-        ctx.fillRect(snake1X, snake1Y, blockSize, blockSize);
+        //ctx.fillRect(snake1X, snake1Y, blockSize, blockSize);
+        ctx.fillRect(snake1X, snake1Y, blockSize, blockSize, 4);
         for (let i = 0; i < snake1.length; i++) {
             ctx.fillRect(snake1[i][0], snake1[i][1], blockSize, blockSize);
         }
@@ -198,10 +199,46 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
+        //Other snake hit detection
+        if(snake1.length == 0 && snake2.length == 0) {
+            if(snake1X == snake2X && snake1Y == snake2Y) {
+                isGameOver = true;
+                gameOver();
+            }
+        } else if (snake1.length == 0 && snake2.length > 0) {
+            for (let i = 0; i < snake2.length; i++) {
+                if (snake1X == snake2[i][0] && snake1Y == snake2[i][1]) { 
+                    isGameOver = true;
+                    gameOver();
+                }
+            }
+        } else if (snake2.length == 0 && snake1.length > 0) {
+            for (let i = 0; i < snake1.length; i++) {
+                if (snake2X == snake1[i][0] && snake2Y == snake1[i][1]) { 
+                    isGameOver = true;
+                    gameOver();
+                }
+            }
+        } else {
+            for (let i = 0; i < snake2.length; i++) {
+                if (snake1X == snake2[i][0] && snake1Y == snake2[i][1]) { 
+                    isGameOver = true;
+                    gameOver();
+                }
+            }
+
+            for (let i = 0; i < snake1.length; i++) {
+                if (snake2X == snake1[i][0] && snake2Y == snake1[i][1]) { 
+                    isGameOver = true;
+                    gameOver();
+                }
+            }
+        }
+
         //Own body hit detection, snake 2
         for (let i = 0; i < snake2.length; i++) {
             if (snake2X == snake2[i][0] && snake2Y == snake2[i][1]) { 
-
+         
                 isGameOver = true;
                 gameOver();
             }

@@ -18,6 +18,7 @@ class EventFactory extends Factory
     {
         return [
             'title' => fake()->name,
+            'users' => '["'.fake()->numberBetween(1, 2).'"]',
             'user_id' => fake()->numberBetween(1, 2),
         ];
     }

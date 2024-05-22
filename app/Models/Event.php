@@ -16,6 +16,7 @@ class Event extends Model
         'thumbnail_path',
         'results_count',
         'user_id',
+        'users',
         'created_at'
     ];
 

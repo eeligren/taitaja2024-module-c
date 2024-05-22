@@ -29,11 +29,14 @@
             </div>
             <div class="row">
                 <label for="user_id">Käyttäjät</label>
-                <select name="user_id" id="user_id">
-                    @foreach($users as $user)
-                        <option value="{{ $user->id }}">{{ $user->username }}</option>
-                    @endforeach
-                </select>
+                @foreach($users as $user)
+                    <div class="list-row">
+                        <input type="checkbox" value="{{ $user->id }}" name="users[]">{{ $user->username }}
+                    </div>
+                @endforeach
+                @error('users')
+                    <p class="error-text">{{ $message }}</p>
+                @enderror
             </div>
             <div class="row">
                 <label for="results_amount">Tulosten määrä</label>

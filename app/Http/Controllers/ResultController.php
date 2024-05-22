@@ -35,8 +35,9 @@ class ResultController extends Controller
     public function edit(Event $event, Result $result)
     {
         //Check if user owns the event
-        if($event->user_id != auth()->user()->id) {
-            return redirect()->route('events.myevents.edit', $event);
+        $userIds = json_decode($result->event->users);
+        if(array_search(strval(auth()->user()->id), $userIds)) {
+            return redirect()->route('events.index');
         }
 
         return view('dashboard.results.edit', compact('event', 'result'));
@@ -46,8 +47,9 @@ class ResultController extends Controller
     public function update(Event $event, Result $result, Request $request)
     {
         //Check if user owns the event
-        if($event->user_id != auth()->user()->id) {
-            return redirect()->route('events.myevents.edit', $event);
+        $userIds = json_decode($event->users);
+        if(array_search(strval(auth()->user()->id), $userIds)) {
+            return redirect()->route('events.index');
         }
 
         $request->validate([
@@ -66,8 +68,9 @@ class ResultController extends Controller
     //Destory result
     public function destroy(Event $event, Result $result) {
         //Check if user owns the event
-        if($event->user_id != auth()->user()->id) {
-            return redirect()->route('events.myevents.edit', $event);
+        $userIds = json_decode($event->users);
+        if(array_search(strval(auth()->user()->id), $userIds)) {
+            return redirect()->route('events.index');
         }
 
         $result->delete();

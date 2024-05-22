@@ -30,7 +30,8 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\Event::create([
             'title' => 'MATOPELI',
-            'user_id' => 2
+            'user_id' => 2,
+            'users' => '["2"]'
         ]);
     }
 }

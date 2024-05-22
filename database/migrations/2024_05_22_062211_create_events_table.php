@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('thumbnail_path')->nullable();
             $table->integer('results_count')->default(10);
+            $table->string('users');
             $table->foreignIdFor(\App\Models\User::class)->constrained();
             $table->timestamps();
         });

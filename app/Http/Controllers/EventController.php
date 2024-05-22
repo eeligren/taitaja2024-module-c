@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Casts\Json;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -45,6 +46,7 @@ class EventController extends Controller
         $request->validate([
             'title' => 'required',
             'results_amount' => 'required',
+            'users' => 'required'
         ]);
 
         //File upload
@@ -54,11 +56,14 @@ class EventController extends Controller
             $filePath = null;
         }
 
+        $userIds = json_encode($request->get('users'));
+
         Event::create([
             'title' => $request->input('title'),
             'thumbnail_path' => $filePath,
             'results_count' => $request->input('results_amount'),
-            'user_id' => $request->input('user_id'),
+            'users' => $userIds,
+            'user_id' => 1,
             'created_at' => $request->input('created_at') ? $request->input('created_at') : now(),
         ]);
 
@@ -76,7 +81,8 @@ class EventController extends Controller
     public function myevents_edit(Event $event)
     {
         //Check if user owns the event
-        if($event->user_id != auth()->user()->id) {
+        $userIds = json_decode($event->users);
+        if(array_search(strval(auth()->user()->id), $userIds)) {
             return redirect()->route('events.index');
         }
         return view('dashboard.events.myevents_edit', ['event' => $event, 'results' => $event->results]);
@@ -86,7 +92,8 @@ class EventController extends Controller
     public function myevents_update(Event $event, Request $request)
     {
         //Check if user owns the event
-        if($event->user_id != auth()->user()->id) {
+        $userIds = json_decode($event->users);
+        if(array_search(strval(auth()->user()->id), $userIds)) {
             return redirect()->route('events.index');
         }
 
